@@ -8,9 +8,10 @@ RUN apk add --no-cache python3 git && \
     pip3 install --upgrade pip setuptools && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
-    git clone -b ${TINYPROXY_VERSION} --depth 1 https://github.com/igzivkov/tinyproxy_exporter.git && \
-    pip install -r ./tinyproxy_exporter/requirements.txt
-    cp ./tinyproxy_exporter/tinyproxy_exporter / && \
+    git clone -b ${TINYPROXY_VERSION} --depth 1 https://github.com/igzivkov/tinyproxy_exporter.git tinyproxy_exporter_repo && \
+    pip install -r ./tinyproxy_exporter_repo/requirements.txt && \
+    cp ./tinyproxy_exporter_repo/tinyproxy_exporter / && \
+    rm -rf ./tinyproxy_exporter_repo && \
     rm -r /root/.cache
 
 ENV LISTEN=":9240" \
