@@ -16,6 +16,6 @@ RUN apk add --no-cache python3 git && \
 
 ENV LISTEN=":9240" \
 	STATHOST="tinyproxy.stats" \
-	TINYPROXY="127.0.0.1:8888"
+	TINYPROXY="127.0.0.1"
 
 CMD python3 /tinyproxy_exporter -l ${LISTEN} -s ${STATHOST} -t ${TINYPROXY}
