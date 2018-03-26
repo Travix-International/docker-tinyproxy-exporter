@@ -1,6 +1,6 @@
 FROM alpine:3.7
 
-ENV TINYPROXY_VERSION="1.0.1"
+ENV TINYPROXY_EXPORTER_VERSION="1.0.2"
 
 RUN apk add --no-cache python3 git && \
     python3 -m ensurepip && \
@@ -8,7 +8,7 @@ RUN apk add --no-cache python3 git && \
     pip3 install --upgrade pip setuptools && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
-    git clone -b ${TINYPROXY_VERSION} --depth 1 https://github.com/igzivkov/tinyproxy_exporter.git tinyproxy_exporter_repo && \
+    git clone -b ${TINYPROXY_EXPORTER_VERSION} --depth 1 https://github.com/Travix-International/tinyproxy_exporter.git tinyproxy_exporter_repo && \
     pip install -r ./tinyproxy_exporter_repo/requirements.txt && \
     cp ./tinyproxy_exporter_repo/tinyproxy_exporter / && \
     rm -rf ./tinyproxy_exporter_repo && \
